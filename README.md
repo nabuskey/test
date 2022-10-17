@@ -14,7 +14,7 @@
    ```
 4. The webhook pod prints API group and kind then approves it. So open another terminal and follow logs:
    ```bash
-   kubectl logs -n hello-webhook <POD> hello-webhook
+   kubectl logs -n hello-webhook <POD> hello-webhook -f
    ```
 5. Apply object-storage. Note that this CR doesn't exist on the cluster yet.
    ```bash
