@@ -19,6 +19,7 @@ func mutate(w http.ResponseWriter, r *http.Request) {
 	if err != nil {
 		w.WriteHeader(500)
 		log.Printf("error decoding: %s", err)
+		return
 	}
 	log.Printf("group: %s, kind: %s", admissionReview.Request.Resource.Group, admissionReview.Request.Kind)
 

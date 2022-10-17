@@ -7,14 +7,11 @@ metadata:
     cert-manager.io/inject-ca-from: hello-webhook/my-webhook-certificate
 webhooks:
 - name: test.manabu.io
-  objectSelector:
-    matchLabels:
-      hello: "true"
   rules:
   - apiGroups:   ["awsblueprints.io"]
-    apiVersions: ["v1alpha1"]
+    apiVersions: ["*"]
     operations:  ["CREATE"]
-    resources:   ["*"]
+    resources:   ["*/*"]
     scope:       "*"
   clientConfig:
     service:

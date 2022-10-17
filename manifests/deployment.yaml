@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
       - name: hello-webhook
-        image: techiescorner/webhook:latest
+        image: docker.io/nabuskey/public-test:mutating-0.0.1
         ports:
         - containerPort: 8000
         volumeMounts:
