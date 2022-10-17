@@ -1,0 +1,26 @@
+apiVersion: admissionregistration.k8s.io/v1
+kind: MutatingWebhookConfiguration
+metadata:
+  name: "test-webhook-config.manabu.io"
+  namespace: hello-webhook
+  annotations:
+    cert-manager.io/inject-ca-from: hello-webhook/my-webhook-certificate
+webhooks:
+- name: test.manabu.io
+  objectSelector:
+    matchLabels:
+      hello: "true"
+  rules:
+  - apiGroups:   ["awsblueprints.io"]
+    apiVersions: ["v1alpha1"]
+    operations:  ["CREATE"]
+    resources:   ["*"]
+    scope:       "*"
+  clientConfig:
+    service:
+      namespace: "hello-webhook"
+      name: "hello-webhook-service"
+      path: /mutate
+  admissionReviewVersions: ["v1"]
+  sideEffects: None
+  timeoutSeconds: 10

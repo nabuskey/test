@@ -1,0 +1,21 @@
+apiVersion: cert-manager.io/v1
+kind: Issuer
+metadata:
+  name: self-signer
+  namespace: hello-webhook
+spec:
+  selfSigned: {}
+---
+apiVersion: cert-manager.io/v1
+kind: Certificate
+metadata:
+  name: my-webhook-certificate
+  namespace: hello-webhook
+spec:
+  secretName: my-webhook-certificate-secret
+  dnsNames:
+  #  - my-webhook
+  #  - my-webhook.temp-webhook
+    - hello-webhook-service.hello-webhook.svc
+  issuerRef:
+    name: self-signer
